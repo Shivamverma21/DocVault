@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { supabase } from "../services/supabaseClient";
+import JSZip from "jszip";
 
 const FileUploader = ({ userId, refreshFiles }) => {
   const [file, setFile] = useState(null);
@@ -11,14 +12,30 @@ const FileUploader = ({ userId, refreshFiles }) => {
     setFile(e.target.files[0]);
   };
 
+  const compressFile = async (file) => {
+    const zip = new JSZip();
+    zip.file(file.name, file);
+    const compressedBlob = await zip.generateAsync({ type: "blob" });
+    return new File([compressedBlob], `${file.name}.zip`, { type: "application/zip" });
+  };
+
   const handleUpload = async () => {
     if (!file) return alert("Please select a file");
 
     setUploading(true);
-    const filePath = `${userId}/${file.name}`;
+
+    const fileType = file.type.split("/")[0]; // Get file category (image, video, text, etc.)
+    let uploadFile = file;
+
+    // Compress non-image files
+    if (fileType !== "image") {
+      uploadFile = await compressFile(file);
+    }
+
+    const filePath = `${userId}/${uploadFile.name}`;
 
     // Upload file to Supabase Storage
-    const { data, error } = await supabase.storage.from("uploads").upload(filePath, file);
+    const { data, error } = await supabase.storage.from("uploads").upload(filePath, uploadFile);
 
     if (error) {
       console.error("Upload error:", error);
