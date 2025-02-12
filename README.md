@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+📂 DocVault
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+DocVault is a secure file storage application where users can sign up, upload files (up to 1GB), manage them with titles and descriptions, generate shareable public links, and delete files when needed. Built with React & Supabase, it ensures easy access control, seamless file management, and secure authentication. 🚀
 
-## Available Scripts
+🚀 Features
 
-In the project directory, you can run:
+✅ User Authentication (Sign Up / Log In)
+✅ Secure File Upload (Up to 1GB)
+✅ File Management (Title & Description)
+✅ Generate Shareable Public Links
+✅ Delete Files When Needed
+✅ Built with React & Supabase
 
-### `npm start`
+🛠️ Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Follow these steps to set up DocVault on your local machine:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1️⃣ Clone the Repository
 
-### `npm test`
+git clone https://github.com/your-username/docvault.git
+cd docvault
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2️⃣ Install Dependencies
 
-### `npm run build`
+npm install
+npm install @supabase/supabase-js
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3️⃣ Setup Environment Variables
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Create a .env file in the root of your project and add the following values:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+REACT_APP_SUPABASE_URL=your_supabase_project_url
+REACT_APP_SUPABASE_ANON_KEY=your_supabase_anon_key
 
-### `npm run eject`
+4️⃣ Start the Development Server
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+npm start
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This will start the project in development mode. Open http://localhost:3000 in your browser.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+🔑 Usage
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1️⃣ Sign Up – Create a new account to start uploading files.2️⃣ Log In – If you already have an account, log in to access your stored files.3️⃣ Upload Files – Select and upload files (max 1GB) with titles & descriptions.4️⃣ Manage Files – View, edit, or delete uploaded files easily.5️⃣ Generate Public Links – Share your files with others using unique links.
 
-## Learn More
+🔧 Tech Stack
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Frontend: React.js
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Backend/Database: Supabase
 
-### Code Splitting
+Authentication: Supabase Auth
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+File Storage: Supabase Storage
 
-### Analyzing the Bundle Size
+🚀 Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+To deploy the project, use Vercel, Netlify, or any hosting service that supports React apps.
 
-### Making a Progressive Web App
+1️⃣ Build the project:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+npm run build
 
-### Advanced Configuration
+2️⃣ Deploy the build folder to your hosting provider.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+🤝 Contributing
 
-### Deployment
+Contributions are welcome! To contribute:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Fork the repository.
 
-### `npm run build` fails to minify
+Create a new branch (feature-branch-name).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Commit your changes (git commit -m "Add new feature").
+
+Push to the branch (git push origin feature-branch-name).
+
+Open a Pull Request.
+
+⚠️ Known Issues
+
+Large file uploads may take time depending on internet speed.
+
+Ensure correct Supabase credentials in the .env file.
+
+👤 Author & Contact
+
+Your Name📧 Email: shivamfeb2101@gmail.com🔗 GitHub: Shivamverma21
+
+Feel free to reach out for any queries or collaborations! 🚀
