@@ -7,6 +7,7 @@ const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,23 +40,23 @@ const Dashboard = () => {
   };
 
   const handleDelete = async (fileId, filePath) => {
-    if (!window.confirm("Are you sure you want to delete this file?")) return;
+    setMessage(""); // Clear previous messages
 
     const { error: storageError } = await supabase.storage.from("uploads").remove([filePath]);
     if (storageError) {
-      alert("Failed to delete file from storage.");
-      return;
+        setMessage("❌ Failed to delete file from storage.");
+        return;
     }
 
     const { error: dbError } = await supabase.from("files").delete().eq("id", fileId);
     if (dbError) {
-      alert("Failed to delete file metadata.");
-      return;
+        setMessage("❌ Failed to delete file metadata.");
+        return;
     }
 
     fetchFiles(user.id);
-    alert("File deleted successfully!");
-  };
+    setMessage("✅ File deleted successfully!");
+};
 
   const handleCopyLink = (url) => {
     navigator.clipboard.writeText(url);
