@@ -23,7 +23,7 @@ cd docvault
 2️⃣ Install Dependencies
 
 npm install
-npm install @supabase/supabase-js
+npm install @supabase/supabase-js jszip react-router-dom
 
 3️⃣ Setup Environment Variables
 
