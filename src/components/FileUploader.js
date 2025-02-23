@@ -23,31 +23,28 @@ const FileUploader = ({ userId, refreshFiles }) => {
   const handleUpload = async () => {
     if (!file) {
         setMessage("❌ Please select a file");
-        setTimeout(() => setMessage(""), 3000); // Hide message after 2 seconds
+        setTimeout(() => setMessage(""), 3000);
         return;
     }
 
     setUploading(true);
-    setMessage(""); // Clear previous messages
+    setMessage("");
 
-    const fileType = file.type.split("/")[0]; // Get file category (image, video, text, etc.)
+    const fileType = file.type.split("/")[0];
     let uploadFile = file;
 
-    // Compress non-image files
     if (fileType !== "image") {
         uploadFile = await compressFile(file);
     }
 
     const filePath = `${userId}/${uploadFile.name}`;
 
-    // Upload file to Supabase Storage
     const { error } = await supabase.storage.from("uploads").upload(filePath, uploadFile);
 
     if (error) {
         console.error("Upload error:", error);
         setMessage("❌ File upload failed!");
     } else {
-        // Save file metadata in the database
         const { error: dbError } = await supabase.from("files").insert([
             {
                 user_id: userId,
@@ -62,22 +59,15 @@ const FileUploader = ({ userId, refreshFiles }) => {
             setMessage("❌ Metadata saving failed!");
         } else {
             setMessage("✅ File uploaded successfully!");
-
-            // Refresh file list after upload
             refreshFiles();
-
-            // Reset input fields
             setFile(null);
             setTitle("");
             setDescription("");
-
-            // Reset file input field visually
             document.getElementById("fileInput").value = "";
         }
     }
     setUploading(false);
 
-    // Auto-hide message after 3 seconds
     setTimeout(() => setMessage(""), 2000);
 };
 
@@ -102,7 +92,6 @@ const FileUploader = ({ userId, refreshFiles }) => {
         {uploading ? "Uploading..." : "Upload"}
       </button>
 
-      {/* Display success or error message */}
       {message && <p className="status-message">{message}</p>}
     </div>
   );

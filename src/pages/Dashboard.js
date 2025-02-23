@@ -40,7 +40,7 @@ const Dashboard = () => {
   };
 
   const handleDelete = async (fileId, filePath) => {
-    setMessage(""); // Clear previous messages
+    setMessage(""); 
 
     const { error: storageError } = await supabase.storage.from("uploads").remove([filePath]);
     if (storageError) {
